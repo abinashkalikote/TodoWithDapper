@@ -1,0 +1,28 @@
+﻿@model TodoVM
+
+@{
+    ViewBag.Title = "Add Todo";
+    Layout = "_Layout";
+}
+
+@if (TempData["success"] != null)
+{
+    <div class='alert alert-success'>@TempData["success"]</div>
+}
+
+<h2>Create Todo</h2>
+
+<form method="post">
+    <div>
+        <label asp-for="Task"></label>
+        <input asp-for="Task" class="form-control form-control-sm"/>
+        <span asp-validation-for="Task"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Description"></label>
+        <input asp-for="Description" class="form-control form-control-sm"/>
+        <span asp-validation-for="Description"></span>
+    </div>
+    
+    <input type="submit" class="btn btn-primary" value="Add Task"/>
+</form>

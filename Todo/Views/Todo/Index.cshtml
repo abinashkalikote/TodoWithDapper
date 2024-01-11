@@ -1,0 +1,55 @@
+﻿@model TodoIndexVm
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<div class="float-end">
+    <a asp-action="CreateTodo" asp-controller="Todo" class="btn btn-primary">Add Todo</a>
+</div>
+
+<form method="get">
+    <div class="row">
+        <div class="col-8">
+            <input asp-for="Task" class="form-control form-control-sm"/>
+        </div>
+        <div class="col-4">
+            <input type="submit" class="btn btn-sm btn-primary"/>
+        </div>
+    </div>
+</form>
+<h2>List of Todos (@Model.TodoCount) : </h2>
+
+<div class="container">
+    <table class="table table-bordered table-responsive">
+        <tr>
+            <th>S.N</th>
+            <th>Task</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+
+        @{
+            var sn = 1;
+
+            foreach (var todo in Model.Items)
+            {
+                <tr>
+                    <td>@(sn++)</td>
+                    <td>@todo.Task</td>
+                    <td>@todo.Description</td>
+                    <td>@(todo.IsDone ? "Completed" : "Pending")</td>
+                    <td>
+                        <a asp-action="Delete" asp-controller="Todo" asp-route-id="@todo.Id" class="btn btn-sm btn-warning">Delete</a>
+                        <a asp-action="Edit" asp-controller="Todo" asp-route-id="@todo.Id" class="btn btn-sm btn-success">Edit</a>
+                        <a asp-action="MarkAsCompleted" asp-controller="Todo" asp-route-id="@todo.Id" class="btn btn-sm btn-dark">Mark As Completed</a>
+                                                                        
+                    </td>
+                </tr>
+            }
+        }
+
+    </table>
+</div>

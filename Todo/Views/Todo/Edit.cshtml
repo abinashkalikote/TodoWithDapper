@@ -1,0 +1,23 @@
+﻿@model TodoVM?
+
+@{
+    ViewBag.Title = "Edit Todo";
+    Layout = "_Layout";
+}
+
+<h2>Edit Todo</h2>
+
+<div class="container">
+    <form method="post">
+        <div>
+            <label asp-for="Task"></label>
+            <input asp-for="Task" class="form-control form-control-sm"/>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Description"></label>
+            <input asp-for="Description" class="form-control form-control-sm"/>
+        </div>
+        
+        <input type="submit" class="btn btn-primary"/>
+    </form>
+</div>
